@@ -1,1 +1,123 @@
-i am here
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Guess-number</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            font-family:sans-serif;
+        }
+        body{
+            background-color: rgb(188, 193, 197);
+        }
+        h1{
+            text-align: center;
+            background-color:dimgray;
+            height: 13vh;
+            font-size:50px;
+            padding: 10px;
+            color: rgb(2, 12, 20);
+        }
+        h3{
+            margin: 30px;
+        }
+        input{
+            height: 35px;
+            width: 50vh;
+            background-color: dimgray;
+            border: 10px;
+            border-radius: 5px;
+            color: rgb(248, 247, 245);
+            border:none;
+            
+        }
+        button{
+            height: 35px;
+            width: 20vh;
+            background-color: dimgray;
+            border: 10px;
+            border-radius: 5px;
+            color: rgb(248, 247, 245);
+            font-weight: 800;
+            color: black;
+            cursor: pointer;
+            margin-left: 30px;
+            position: absolute;
+        }
+        button:hover{
+            height: 42px;
+            width: 22vh;
+            transition: 0.1s;
+            color: aliceblue;
+            background-color: black;
+            
+        }
+        input::placeholder{
+            color: rgb(9, 14, 19);
+        }   
+        .btn{
+            margin-left: 200px;
+        }
+        h2{
+            margin-left: 200px;
+            margin-top: 120px;
+            font-size: 300%;
+            color: rgb(55, 54, 58);
+        }
+    </style>
+    </head>
+    <body>
+    <h1>Welcome to the Game...</h1>
+    <h3>Guess-Number Here...</h3>
+    <input style="margin-left: 100px;" id="num" type="number" placeholder="   Enter Number Here">
+    <button onclick="clk()">check</button>
+    <button class="btn" onclick="refreshPage()">Try Again</button>
+
+
+    <h3 id="result"></h3>
+    <h2 id="show"></h2>
+
+    </body>
+    <script>
+        var input=document.getElementById("num")
+        var result=document.getElementById("result")
+        var score=document.getElementById("show")
+        var winSound = new Audio("win.mp3")
+        var loseSound = new Audio("lose.mp3")
+        var randomNumber=Math.floor(Math.random()*10)+1
+        var Totalscore=10
+        console.log(randomNumber)
+        function clk(){
+            var INumber=Number(input.value)
+            if(INumber<=10 && INumber>=1 && Totalscore<=10 && Totalscore>=1){
+            if(randomNumber==INumber){
+                winSound.play();
+                console.log("right")
+                result.textContent="Result : Right✨"
+                score.textContent="Your Score:"+ Totalscore+"/10"
+                alert("YOU WON 🏆")
+            }
+            else{
+                Totalscore=Totalscore-1
+                console.log("Wrong")
+                result.textContent="Result : Wrong🚫"
+            }
+        }
+        else if(Totalscore<=1){
+            loseSound.play();
+            score.textContent="Game Over💥"
+            alert("YOU LOSE😢")
+
+        }
+        else{
+            result.textContent="Number is Invalid ❌- Please Enter The Number Between 1-10 "
+        }
+    }
+    function refreshPage() {
+        location.reload();
+    }
+
+    </script>
+    </html>
+
